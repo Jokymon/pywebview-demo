@@ -3,14 +3,14 @@ import webview
 
 
 def main():
-    app = Flask("PyWebView-Demo")
+    app = Flask("PyWebView-Demo", static_folder="gui")
     
     @app.route('/')
     def index():
-        return "<h1>PyWebView-Demo</h1>\n<p>Hello from Flask</p>"
+        return app.send_static_file("index.html")
 
     window = webview.create_window("PyWebView-Demo", app)
-    webview.start()
+    webview.start(debug=True)
 
 
 if __name__=="__main__":
